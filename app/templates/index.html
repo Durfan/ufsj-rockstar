@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row my-2">
+  <div class="col-md-6">
+    <h4>ROCKSTAR Poetic Analysis</h4>
+    <form id="code_input" method="post">
+      <div class="mb-2">
+        <textarea name="code" class="w-100" id="formCode" rows="16" spellcheck="false"
+          autofocus>{{ request.form['code'] }}</textarea>
+      </div>
+      <div id="btns-form" class="order-md-last order-sm-first btn-group" role="group">
+        <button id="submit" type="submit" class="btn bg-primary text-white"><i class="bi bi-mic-fill me-1"></i>Analysis</button>
+        <button id="nuke" type="reset" class="btn btn-success"><i class="bi bi-soundwave me-1"></i>Rock!</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-6">
+    {% if tokens %}
+    <h5>Awesome Lexical</h5>
+    {% for token in tokens %}
+    {% if token.0 == 'error' %}
+    <span class="badge bg-danger">BONO? "{{ token.1 }}" ({{ token.2 }},{{ token.3 }})</span>
+    {% else %}
+    <span class="badge bg-dark">{{ token.0 }} "{{ token.1 }}" ({{ token.2 }},{{ token.3 }})</span>
+    {% endif %}
+    {% endfor %}
+    <h5 class="mt-4">Mega Syntactic</h5>
+
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
