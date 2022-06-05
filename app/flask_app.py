@@ -13,5 +13,6 @@ def landing():
 @app.route('/', methods=['POST'])
 def analysis_process():
     code = request.form['code']
+    code = code.replace('\r', '')
     tokens = poetic.rock_tokens(code)
     return render_template('index.html', tokens=tokens)
