@@ -1,6 +1,6 @@
 # ROCKSTAR Poetic Analysis
 
-Web App/Analisador sintatico para ROCKSTAR. Reconhece (ou não) a estrutura da linguagem por meio do parser PLY (Python Lex-Yacc).
+Web App/Analisador sintatico para ROCKSTAR. Reconhece (ou não) a estrutura da linguagem utilizando o PLY (Python Lex-Yacc).
 
 ![Captura](https://github.com/Durfan/ufsj-rockstar/blob/main/docs/captura.png)
 
