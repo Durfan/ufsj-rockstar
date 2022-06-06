@@ -4,7 +4,21 @@ Web App/Analisador sintatico para ROCKSTAR. Reconhece (ou não) a estrutura da l
 
 ![Captura](https://github.com/Durfan/ufsj-rockstar/blob/main/docs/captura.png)
 
-## Install (w/ Virtual Environment)
+## O que é ROCKSTAR?
+
+> Rockstar is a computer programming language designed for creating programs that are also hair metal power ballads.
+
+### QUE?
+
+* (codewithrockstar.com)[https://codewithrockstar.com/]
+* (github.com/RockstarLang/rockstar)[https://github.com/RockstarLang/rockstar]
+* (youtu.be/6avJHaC3C2U?t=2806)[https://youtu.be/6avJHaC3C2U?t=2806]
+
+### Yac-what?
+
+(PLY (Python Lex-Yacc))[http://www.dabeaz.com/ply/]
+
+# Install (w/ Virtual Environment)
 
 ```sh
 git clone https://github.com/Durfan/ufsj-rockstar.git
@@ -14,7 +28,7 @@ source .venv/bin/activate
 pip install Flask
 ```
 
-### Serving Flask app (development)
+## Serving Flask app (development)
 
 ```sh
 export FLASK_APP=app/flask_app
