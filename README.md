@@ -35,4 +35,6 @@ export FLASK_APP=app/flask_app
 export FLASK_ENV=development
 flask run
 ```
-Open: http://127.0.0.1:5000
+```sh
+xdg-open http://127.0.0.1:5000
+```
