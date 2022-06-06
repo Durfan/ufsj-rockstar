@@ -3,33 +3,78 @@
 {% block content %}
 <div class="row my-2">
   <div class="col-md-6">
-    <h4>ROCKSTAR Poetic Analysis</h4>
+    <h4 class="outline">ROCKSTAR Poetic Analysis</h4>
     <form id="code_input" method="post">
       <div class="mb-2">
         <textarea name="code" class="w-100" id="formCode" rows="18" spellcheck="false"
           autofocus>{{ request.form['code'] }}</textarea>
       </div>
       <div id="btns-form" class="order-md-last order-sm-first btn-group" role="group">
-        <button id="submit" type="submit" class="btn bg-primary text-white"><i class="bi bi-mic-fill me-1"></i>Analysis</button>
+        <button id="submit" type="submit" class="btn bg-primary text-white"><i
+            class="bi bi-mic-fill me-1"></i>Analysis</button>
         <button id="nuke" type="reset" class="btn btn-success"><i class="bi bi-soundwave me-1"></i>Rock!</button>
       </div>
     </form>
   </div>
   <div class="col-md-6">
-    {% if tokens %}
-    <h5>Awesome Lexical</h5>
-    {% for token in tokens %}
-    {% if token.0 == 'error' %}
-    <span class="badge bg-danger">BONO? "{{ token.1 }}" ({{ token.2 }},{{ token.3 }})</span>
-    {% elif token.0 == 'END' %}
-    <span class="badge bg-light text-dark">{{ token.0 }}</span><br><br>
-    {% else %}
-    <span class="badge bg-dark">{{ token.0 }} "{{ token.1 }}" ({{ token.2 }},{{ token.3 }})</span>
+    {% if syntax %}
+    <h5 class="outline">Mega Syntax</h5>
+    <div id="syntax" class="mb-4">
+      <ul class="list-unstyled mb-0">
+        {% for mega in syntax %}
+        <li>
+          <div class="d-flex">
+            <i class="bi bi-music-note me-1"></i>
+            {{ mega }}
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
     {% endif %}
-    {% endfor %}
-    <h5 class="mt-4">Mega Syntax</h5>
-
+    {% if tokens %}
+    <div class="d-flex justify-content-between">
+      <h5 class="outline">Awesome Lexical</h5>
+      <div class="form-check form-switch mt-1">
+        <input class="form-check-input" type="checkbox" id="nerdData">
+        <label class="form-check-label outline" for="nerdData">Nerd Data</label>
+      </div>
+    </div>
+    <div id="toksInfo">
+      {% for token in tokens %}
+      {% if token.0 == 'error' %}
+      <span class="badge bg-danger">BONO?</span>
+      {% elif token.0 == 'END' or token.0 == 'EOI' %}
+      <span class="badge bg-light text-dark">{{ token.0 }}</span>
+      {% else %}
+      <span class="badge bg-dark">{{ token.0 }}</span>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <div id="nerdInfo" style="display: none">
+      {% for token in tokens %}
+      {% if token.0 == 'error' %}
+      <span class="badge bg-danger">BONO? "{{ token.1 }}" ({{ token.2 }},{{ token.3 }})</span>
+      {% elif token.0 == 'END' %}
+      <span class="badge bg-light text-dark">{{ token.0 }}</span><br><br>
+      {% elif token.0 == 'EOI' %}
+      <span class="badge bg-light text-dark">{{ token.0 }}</span>
+      {% else %}
+      <span class="badge bg-dark">{{ token.0 }} "{{ token.1 }}" ({{ token.2 }},{{ token.3 }})</span>
+      {% endif %}
+      {% endfor %}
+    </div>
     {% endif %}
   </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+  $("#nerdData").click(function () {
+    $("#toksInfo").toggle();
+    $("#nerdInfo").toggle();
+  });
+</script>
 {% endblock %}

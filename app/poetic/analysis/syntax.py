@@ -1,103 +1,139 @@
-
-tk_EOI, tk_Mul, tk_Div, tk_Mod, tk_Add, tk_Sub, tk_Negate, tk_Not, tk_Lss, tk_Leq, tk_Gtr, \
-tk_Geq, tk_Eql, tk_Neq, tk_Assign, tk_And, tk_Or, tk_If, tk_Else, tk_While, tk_Print,      \
-tk_Putc, tk_Lparen, tk_Rparen, tk_Lbrace, tk_Rbrace, tk_Semi, tk_Comma, tk_Ident,          \
-tk_Integer, tk_String = range(31)
-
-nd_Ident, nd_String, nd_Integer, nd_Sequence, nd_If, nd_Prtc, nd_Prts, nd_Prti, nd_While, \
-nd_Assign, nd_Negate, nd_Not, nd_Mul, nd_Div, nd_Mod, nd_Add, nd_Sub, nd_Lss, nd_Leq,     \
-nd_Gtr, nd_Geq, nd_Eql, nd_Neq, nd_And, nd_Or = range(25)
-
-all_syms = {
-    'End_of_input'   : 'tk_EOI',
-    'Op_multiply'    : 'tk_Mul',
-    'Op_divide'      : 'tk_Div',
-    'Op_mod'         : 'tk_Mod',
-    'Op_add'         : 'tk_Add',
-    'Op_subtract'    : 'tk_Sub',
-    'Op_negate'      : 'tk_Negate',
-    'Op_not'         : 'tk_Not',
-    'Op_less'        : 'tk_Lss',
-    'Op_lessequal'   : 'tk_Leq',
-    'Op_greater'     : 'tk_Gtr',
-    'Op_greaterequal': 'tk_Geq',
-    'Op_equal'       : 'tk_Eql',
-    'Op_notequal'    : 'tk_Neq',
-    'Op_assign'      : 'tk_Assign',
-    'Op_and'         : 'tk_And',
-    'Op_or'          : 'tk_Or',
-    'Keyword_if'     : 'tk_If',
-    'Keyword_else'   : 'tk_Else',
-    'Keyword_while'  : 'tk_While',
-    'Keyword_print'  : 'tk_Print',
-    'Keyword_putc'   : 'tk_Putc',
-    'LeftParen'      : 'tk_Lparen',
-    'RightParen'     : 'tk_Rparen',
-    'LeftBrace'      : 'tk_Lbrace',
-    'RightBrace'     : 'tk_Rbrace',
-    'Semicolon'      : 'tk_Semi',
-    'Comma'          : 'tk_Comma',
-    'Identifier'     : 'tk_Ident',
-    'Integer'        : 'tk_Integer',
-    'String'         : 'tk_String'
-}
-
-TK_NAME         = 0
-TK_RIGHT_ASSOC  = 1
-TK_IS_BINARY    = 2
-TK_IS_UNARY     = 3
-TK_PRECEDENCE   = 4
-TK_NODE         = 5
-
-input_tks  = None
-err_line   = None
-err_col    = None
-tok        = None
-tok_text   = None
+import re
+from poetic.ply import yacc
+from poetic.analysis.lexer import tokens
 
 
-class Node:
-    def __init__(self, node_type, left = None, right = None, value = None):
-        self.node_type  = node_type
-        self.left  = left
-        self.right = right
-        self.value = value
+results = []
 
 
-def error(msg):
-    print("(%d, %d) %s" % (int(err_line), int(err_col), msg))
+def p_statement(p):
+    '''statement : assignment
+                 | CONTINUE
+                 | function
+                 | LOOP conditional COMMA
+                 | SEND expression
+                 | IF conditional
+                 | IF identifier CALL args
+                 | SAY expression'''
+
+    if (len(p) == 2):
+        p[0] = p[1]
+    elif (len(p) == 3):
+        p[0] = (p[1], p[2])
+    elif (len(p) > 3):
+        p[0] = (p[1], p[2])
+
+    global results
+    results.append(f'statement: {p[0]}')
 
 
-def gettok():
-    global err_line, err_col, tok, tok_text, tok_other
-    line = input_file.readline()
- 
-    line_list = shlex.split(line, False, False)
-    # line col Ident var_name
-    # 0    1   2     3
- 
-    err_line = line_list[0]
-    err_col  = line_list[1]
-    tok_text = line_list[2]
- 
-    tok = all_syms.get(tok_text)
-    if tok == None:
-        error("Unknown token %s" % (tok_text))
- 
-    tok_other = None
-    if tok in [tk_Integer, tk_Ident, tk_String]:
-        tok_other = line_list[3]
+def p_assignment(p):
+    '''assignment : identifier ATTR expression
+                  | BUILD identifier UP
+                  | KNOCK identifier DOWN
+                  | PUT expression IN identifier'''
 
- 
-def make_node(oper, left, right = None):
-    return Node(oper, left, right)
+    if (len(p) == 4):
+        p[0] = ('Assign', p[1], p[3])
+    else:
+        p[0] = ('Assign', p[2], p[3])
 
 
-def parse(tokens):
-    t = None
-    gettok()
-    while True:
-        t = make_node(nd_Sequence, t, stmt())
-        if tok == tk_EOI or t == None:
-            break
-    return t
+def p_function(p):
+    '''function : identifier FOO args'''
+
+    p[0] = ('FOO', p[1])
+
+
+def p_args(p):
+    '''args : identifier LOGICAL args
+            | identifier'''
+    
+    if (len(p) == 4):
+        p[0] = ('args', p[1], p[3])
+    else:
+        p[0] = p[1]
+
+
+def p_expression_binop(p):
+    '''expression : expression PLUS expression
+                  | expression MINUS expression
+                  | expression MULT expression
+                  | expression DIV expression'''
+
+    p[0] = p[2]
+
+
+def p_conditional(p):
+    '''conditional : expression GT expression
+                   | expression LT expression
+                   | expression ATTR expression
+                   | expression GE expression
+                   | expression LE expression'''
+
+    p[0] = ('conditional', p[2])
+
+
+def p_expression_identifier(p):
+    '''expression : identifier
+                  | literal'''
+    p[0] = p[1]
+
+
+def p_identifier(p):
+    '''identifier : PPVAR
+                  | cmvar
+                  | ID
+                  | PRONOUN'''
+
+    p[0] = p[1]
+
+
+def p_cmvar(p):
+    '''cmvar : CMVAR ID'''
+
+    p[0] = ('common', p[1] + '_' + p[2])
+
+
+def p_literal(p):
+    '''literal : LITERALNUM
+               | LITERALSTR
+               | TRUE
+               | FALSE
+               | NULL
+               | poetic'''
+
+    p[0] = p[1]
+
+
+def p_poetic(p):
+    '''poetic : POETIC'''
+
+    number = ""
+    for word in p[1].split():
+        number += str(len(word) % 10)
+    p[0] = number
+
+
+def p_empty(p):
+    'empty :'
+    pass
+
+
+def p_error(p):
+    global results
+    results.append(f'BONO? {p}')
+    parser.restart()
+
+
+parser = yacc.yacc()
+
+
+def syntactic_ballad(code):
+    global results
+    results = []
+    code = code.split('\n')
+    code = [x for x in code if x]
+    for line in code:
+        parser.parse(line)
+    return results

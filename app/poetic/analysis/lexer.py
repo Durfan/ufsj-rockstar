@@ -4,10 +4,11 @@ from poetic.ply import lex
 tokens = [
     'COMMENT',
     'CMVAR','PRONOUN',
-    'TRUE','FALSE','NULL',
+    'PPVAR',
     'ATTR',
-    'INT','FLOAT',
-    'LITERALSTR',
+    'TRUE','FALSE','NULL',
+    'POETIC',
+    'LITERALNUM','LITERALSTR',
     'PUT','LET','IN','BE',
     'BUILD','KNOCK',
     'UP','DOWN',
@@ -17,9 +18,7 @@ tokens = [
     'LISTEN','SAY',
     'LOOP','BREAK','CONTINUE',
     'FOO','CALL','SEND',
-    'AND',
     'COMMA',
-    'PPVAR',
     'ID',
     'END'
 ]
@@ -36,10 +35,10 @@ t_ATTR = r'\b(?i:is|are|was|where)\b'
 # Constants
 t_TRUE = r'\b(?i:maybe|true|right|yes|ok)\b'
 t_FALSE = r'\b(?i:definitely\smaybe|false|wrong|no|lies)\b'
-t_NULL = r'\b(?i:null|nothing|nowhere|nobody|gone)\b'
 
-t_INT = r'\d+'
-t_FLOAT = r'\d+.\d+'
+#t_POETIC = r'(?<=is\s)([a-z](.+)+)\n'
+t_POETIC = r'((?<=is\s)|(?<=are\s)|(?<=was\s)|(?<=where\s))([a-z](.+)+)'
+t_LITERALNUM = r'\b(\d+(?:\.\d+)?)\b'
 
 def t_LITERALSTR(t):
     r'\"(.*?)\"'
@@ -93,6 +92,11 @@ t_PPVAR = r'[A-Z][a-z]*'
 t_ID = r'[a-z]+'
 
 
+def t_NULL(t):
+    r'\b(?i:null|nothing|nowhere|nobody|gone)\b'
+    return t
+
+
 def t_END(t):
     r'(\n{2})'
     t.value = 'Blank Line'
@@ -124,7 +128,7 @@ def rock_tokens(code):
     while True:
         tok = lexer.token()
         if not tok:
-            tokens.append(('EOI','The End',0,0))
+            tokens.append(('EOI','The End',lexer.lineno,lexer.lexpos))
             break
         token = (tok.type, tok.value, tok.lineno, tok.lexpos)
         tokens.append(token)

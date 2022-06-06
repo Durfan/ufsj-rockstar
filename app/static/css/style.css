@@ -1,11 +1,28 @@
 body {
   background-image: url("/static/img/bck_guitar.jpg");
   background-color: black;
+  color: white;
 }
 
-h4,h5{
-  font-family: 'Metal Mania', cursive;
+textarea {
+  background: rgba(0, 0, 0, 0.8);
+  border: none;
+  outline: none;
   color: white;
+  padding: 8px;
+}
+
+#syntax {
+  background: rgba(0, 0, 0, 0.8);
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 14px;
+  padding: 8px;
+}
+
+.outline {
+  font-family: 'Metal Mania', cursive;
   text-shadow:
     -1px -1px 0 #000,
      0   -1px 0 #000,
@@ -15,14 +32,6 @@ h4,h5{
      0    1px 0 #000,
     -1px  1px 0 #000,
     -1px  0   0 #000;
-}
-
-textarea {
-  background: rgba(0, 0, 0, 0.8);
-  border: none;
-  outline: none;
-  color: white;
-  padding: 8px;
 }
 
 .rockstar-logo {
