@@ -18,7 +18,7 @@ Web App/Analisador sintatico para ROCKSTAR. Reconhece (ou não) a estrutura da l
 
 :notebook: [PLY (Python Lex-Yacc)](http://www.dabeaz.com/ply/)
 
-# Install (w/ Virtual Environment)
+## Install (w/ Virtual Environment)
 
 ```sh
 git clone https://github.com/Durfan/ufsj-rockstar.git
@@ -28,7 +28,7 @@ source .venv/bin/activate
 pip install Flask
 ```
 
-## Serving Flask app (development)
+### Serving Flask app (development)
 
 ```sh
 export FLASK_APP=app/flask_app
