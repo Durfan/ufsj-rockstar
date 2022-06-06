@@ -1,4 +1,3 @@
-import re
 from poetic.ply import yacc
 from poetic.analysis.lexer import tokens
 
@@ -24,7 +23,7 @@ def p_statement(p):
         p[0] = (p[1], p[2])
 
     global results
-    results.append(f'statement: {p[0]}')
+    results.append(('statement', f'{p[0]}'))
 
 
 def p_assignment(p):
@@ -122,7 +121,10 @@ def p_empty(p):
 
 def p_error(p):
     global results
-    results.append(f'BONO? {p}')
+    if p:
+        results.append(('error', f'BONO? {p}'))
+    else:
+        results.append(('error', 'WTF?!'))
     parser.restart()
 
 

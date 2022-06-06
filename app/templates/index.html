@@ -24,8 +24,14 @@
         {% for mega in syntax %}
         <li>
           <div class="d-flex">
+            {% if mega.0 == 'error' %}
+            <span class="text-danger">
+              <i class="bi bi-music-note me-1"></i>{{ mega.1 }}
+            </span>
+            {% else %}
             <i class="bi bi-music-note me-1"></i>
             {{ mega }}
+            {% endif %}
           </div>
         </li>
         {% endfor %}
