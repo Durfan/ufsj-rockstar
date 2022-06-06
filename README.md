@@ -10,13 +10,13 @@ Web App/Analisador sintatico para ROCKSTAR. Reconhece (ou não) a estrutura da l
 
 ### QUE?
 
-* (codewithrockstar.com)[https://codewithrockstar.com/]
-* (github.com/RockstarLang/rockstar)[https://github.com/RockstarLang/rockstar]
-* (youtu.be/6avJHaC3C2U?t=2806)[https://youtu.be/6avJHaC3C2U?t=2806]
+:guitar: [codewithrockstar.com](https://codewithrockstar.com/)  
+:guitar: [github.com/RockstarLang/rockstar](https://github.com/RockstarLang/rockstar)  
+:movie_camera: [youtu.be/6avJHaC3C2U?t=2806](https://youtu.be/6avJHaC3C2U?t=2806)
 
 ### Yac-what?
 
-(PLY (Python Lex-Yacc))[http://www.dabeaz.com/ply/]
+:notebook: [PLY (Python Lex-Yacc)](http://www.dabeaz.com/ply/)
 
 # Install (w/ Virtual Environment)
 
