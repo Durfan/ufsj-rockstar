@@ -35,7 +35,7 @@ def p_assignment(p):
     if (len(p) == 4):
         p[0] = ('Assign', p[1], p[3])
     else:
-        p[0] = ('Assign', p[2], p[3])
+        p[0] = ('Assign', p[3], p[4])
 
 
 def p_function(p):
@@ -60,7 +60,14 @@ def p_expression_binop(p):
                   | expression MULT expression
                   | expression DIV expression'''
 
-    p[0] = p[2]
+    if (p[2] == 'PLUS'):
+        p[0] = int(p[1]) + int(p[3])
+    elif (p[2] == 'MINUS'):
+        p[0] = int(p[1]) - int(p[3])
+    elif (p[2] == 'MULT'):
+        p[0] = int(p[1]) * int(p[3])
+    elif (p[2] == 'DIV'):
+        p[0] = int(p[1]) / int(p[3])
 
 
 def p_conditional(p):
@@ -111,7 +118,7 @@ def p_poetic(p):
     number = ""
     for word in p[1].split():
         number += str(len(word) % 10)
-    p[0] = number
+    p[0] = int(number)
 
 
 def p_empty(p):
