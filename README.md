@@ -2,7 +2,7 @@
 
 Web App/Analisador sintático para ROCKSTAR. Reconhece (ou não) a estrutura da linguagem utilizando o PLY (Python Lex-Yacc).
 
-<img src="https://github.com/Durfan/ufsj-rockstar/blob/main/docs/captura.png" style="max-width: 480px" />
+<img src="https://github.com/Durfan/ufsj-rockstar/blob/main/docs/captura.png" width="480" />
 
 ## O que é ROCKSTAR?
 
