@@ -6,17 +6,26 @@
     <h4 class="outline">ROCKSTAR Poetic Analysis</h4>
     <form id="code_input" method="post">
       <div class="mb-2">
-        <textarea name="code" class="w-100" id="formCode" rows="18" spellcheck="false"
+        <textarea name="code" class="w-100" id="program-source" rows="18" spellcheck="false"
           autofocus>{{ request.form['code'] }}</textarea>
       </div>
-      <div id="btns-form" class="order-md-last order-sm-first btn-group" role="group">
-        <button id="submit" type="submit" class="btn bg-primary text-white"><i
+      <div id="btns-form" class="btn-group" role="group">
+        <input id="satriani" name="party" value="lame" hidden>
+        <button id="parser" type="submit" class="btn bg-primary text-white"><i
             class="bi bi-mic-fill me-1"></i>Analysis</button>
-        <button id="nuke" type="reset" class="btn btn-success"><i class="bi bi-soundwave me-1"></i>Rock!</button>
+        <button id="rock-button" type="submit" class="btn btn-success"><i
+            class="bi bi-soundwave me-1"></i>Rock!</button>
       </div>
     </form>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-6 pt-1">
+    {% if rock == 'rock' %}
+    <h5 class="outline">Rock Stage</h5>
+    <div class="mb-4">
+      <input id="program-input" hidden>
+      <textarea id="program-output" class="w-100" rows="5" spellcheck="false"></textarea>
+    </div>
+    {% endif %}
     {% if syntax %}
     <h5 class="outline">Mega Syntax</h5>
     <div id="syntax" class="mb-4">
@@ -77,10 +86,25 @@
 
 {% block scripts %}
 {{ super() }}
+{% if rock == 'rock' %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/satriani.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/rockstar.js') }}"></script>
+<script>
+  $(document).ready(function () {
+    rock();
+  });
+</script>
+{% endif %}
 <script>
   $("#nerdData").click(function () {
     $("#toksInfo").toggle();
     $("#nerdInfo").toggle();
+  });
+  $("#parser").click(function () {
+    $('#satriani').val("lame");
+  });
+  $("#rock-button").click(function () {
+    $('#satriani').val("rock");
   });
 </script>
 {% endblock %}

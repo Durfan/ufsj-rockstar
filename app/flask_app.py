@@ -17,4 +17,7 @@ def analysis_process():
     code = code.replace('\r', '')
     syntax = hairmetal.syntactic_ballad(code)
     tokens = poetic.rock_tokens(code)
-    return render_template('index.html', tokens=tokens, syntax=syntax)
+
+    rock = request.form.get('party') or 'lame'
+
+    return render_template('index.html', tokens=tokens, syntax=syntax, rock=rock)

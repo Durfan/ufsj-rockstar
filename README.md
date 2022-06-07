@@ -17,6 +17,7 @@ Web App/Analisador sintático para ROCKSTAR. Reconhece (ou não) a estrutura da 
 ### Yac-what?
 
 :notebook: [PLY (Python Lex-Yacc)](http://www.dabeaz.com/ply/)
+:notebook: [Satriani interpreter](https://github.com/RockstarLang/rockstar/tree/main/satriani)
 
 ## Install (w/ Virtual Environment)
 

@@ -4,8 +4,22 @@ body {
   color: white;
 }
 
-textarea {
+#program-source {
   background: rgba(0, 0, 0, 0.8);
+  border: none;
+  outline: none;
+  color: white;
+  padding: 8px;
+}
+
+#program-output {
+  background-image:
+    /* top, transparent red */
+    linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),
+    /* your image */
+    url("/static/img/rock_stage.jpg");
+  background-size: cover;
+  background-position: center 70%;
   border: none;
   outline: none;
   color: white;
@@ -25,13 +39,13 @@ textarea {
   font-family: 'Metal Mania', cursive;
   text-shadow:
     -1px -1px 0 #000,
-     0   -1px 0 #000,
-     1px -1px 0 #000,
-     1px  0   0 #000,
-     1px  1px 0 #000,
-     0    1px 0 #000,
-    -1px  1px 0 #000,
-    -1px  0   0 #000;
+    0 -1px 0 #000,
+    1px -1px 0 #000,
+    1px 0 0 #000,
+    1px 1px 0 #000,
+    0 1px 0 #000,
+    -1px 1px 0 #000,
+    -1px 0 0 #000;
 }
 
 .rockstar-logo {
