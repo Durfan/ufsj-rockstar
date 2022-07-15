@@ -72,7 +72,7 @@ import inspect
 # Change these to modify the default behavior of yacc (if you wish)
 #-----------------------------------------------------------------------------
 
-yaccdebug   = False            # Debugging mode.  If set, yacc generates a
+yaccdebug   = True             # Debugging mode.  If set, yacc generates a
                                # a 'parser.out' file in the current directory
 
 debug_file  = 'parser.out'     # Default name of the debugging file

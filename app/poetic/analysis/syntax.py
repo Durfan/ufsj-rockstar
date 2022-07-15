@@ -15,7 +15,15 @@ def p_statement(p):
                  | IF identifier CALL args
                  | SAY expression'''
 
-    if (len(p) == 2):
+    if (p[1] == 'Give back'):
+        p[0] = f'jr {p[2]}'
+    elif (p[1] == 'Say'):
+        p[0] = (f'li $v0, 4', f'la $a0, {p[2]}', 'syscall')
+    elif (p[1] == 'Shout'):
+        p[0] = (f'li $v0, 4', f'la $a0, {p[2]}', 'syscall')
+    elif (p[1] == 'While'):
+        p[0] = (f'Loop:', f'{p[2]}')
+    elif (len(p) == 2):
         p[0] = p[1]
     elif (len(p) == 3):
         p[0] = (p[1], p[2])
@@ -23,7 +31,7 @@ def p_statement(p):
         p[0] = (p[1], p[2])
 
     global results
-    results.append(('statement', f'{p[0]}'))
+    results.append(f'{p[0]}')
 
 
 def p_assignment(p):
@@ -32,26 +40,31 @@ def p_assignment(p):
                   | KNOCK identifier DOWN
                   | PUT expression IN identifier'''
 
-    if (len(p) == 4):
-        p[0] = ('Assign', p[1], p[3])
-    else:
-        p[0] = ('Assign', p[3], p[4])
+    if (p[1] == 'Put'):
+        p[0] = (f'{p[2]}', f'sw {p[4]}')
+    elif (p[1] == 'Build'):
+        p[0] = f'add {p[2]}, {p[2]}, 1'
+    elif (p[1] == 'Knock'):
+        p[0] = f'sub {p[2]}, {p[2]}, 1'
+    elif (p[2] == 'is' or 'are' or 'was' or 'where'):
+        p[0] = f'add {p[1]}, {p[3]}'
+        
 
 
 def p_function(p):
     '''function : identifier FOO args'''
 
-    p[0] = ('FOO', p[1])
+    p[0] = (f'{p[1]}:', f'{p[3]}')
 
 
 def p_args(p):
     '''args : identifier LOGICAL args
             | identifier'''
-    
+
     if (len(p) == 4):
-        p[0] = ('args', p[1], p[3])
+        p[0] = (f'lw {p[1]}', f'{p[3]}')
     else:
-        p[0] = p[1]
+        p[0] = f'lw {p[1]}'
 
 
 def p_expression_binop(p):
@@ -60,14 +73,22 @@ def p_expression_binop(p):
                   | expression MULT expression
                   | expression DIV expression'''
 
-    if (p[2] == 'PLUS'):
-        p[0] = int(p[1]) + int(p[3])
-    elif (p[2] == 'MINUS'):
-        p[0] = int(p[1]) - int(p[3])
-    elif (p[2] == 'MULT'):
-        p[0] = int(p[1]) * int(p[3])
-    elif (p[2] == 'DIV'):
-        p[0] = int(p[1]) / int(p[3])
+    if (p[2] == 'plus'):
+        p[0] = f'add {p[1]}, {p[1]}, {p[3]}'
+    elif (p[2] == 'with'):
+        p[0] = f'add {p[1]}, {p[1]}, {p[3]}'
+    elif (p[2] == 'without'):
+        p[0] = f'sub {p[1]}, {p[1]}, {p[3]}'
+    elif (p[2] == 'minus'):
+        p[0] = f'sub {p[1]}, {p[1]}, {p[3]}'
+    elif (p[2] == 'of'):
+        p[0] = f'mult {p[1]}, {p[3]}'
+    elif (p[2] == 'times'):
+        p[0] = f'mult {p[1]}, {p[3]}'
+    elif (p[2] == 'over'):
+        p[0] = f'div {p[1]}, {p[3]}'
+    elif (p[2] == 'by'):
+        p[0] = f'div {p[1]}, {p[3]}'
 
 
 def p_conditional(p):
@@ -77,8 +98,16 @@ def p_conditional(p):
                    | expression GE expression
                    | expression LE expression'''
 
-    p[0] = ('conditional', p[2])
-
+    if (p[2] == 'is as high as'):
+        p[0] = f'bge {p[1]}, {p[3]}, L2'
+    elif (p[2] == 'is as low as'):
+        p[0] = f'ble {p[1]}, {p[3]}, L2'
+    elif (p[2] == 'is lower as'):
+        p[0] = f'blt {p[1]}, {p[3]}, L2'
+    elif (p[2] == 'is higher as'):
+        p[0] = f'bgt {p[1]}, {p[3]}, L2'
+    elif (p[2] == 'is'):
+        p[0] = f'beq {p[1]}, {p[3]}, L2'
 
 def p_expression_identifier(p):
     '''expression : identifier
@@ -98,7 +127,7 @@ def p_identifier(p):
 def p_cmvar(p):
     '''cmvar : CMVAR ID'''
 
-    p[0] = ('common', p[1] + '_' + p[2])
+    p[0] = f'${p[1]}{p[2]}'
 
 
 def p_literal(p):

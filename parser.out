@@ -1,0 +1,1591 @@
+Created by PLY (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    BE
+    BREAK
+    COMMENT
+    END
+    LET
+    LISTEN
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> assignment
+Rule 2     statement -> CONTINUE
+Rule 3     statement -> function
+Rule 4     statement -> LOOP conditional COMMA
+Rule 5     statement -> SEND expression
+Rule 6     statement -> IF conditional
+Rule 7     statement -> IF identifier CALL args
+Rule 8     statement -> SAY expression
+Rule 9     assignment -> identifier ATTR expression
+Rule 10    assignment -> BUILD identifier UP
+Rule 11    assignment -> KNOCK identifier DOWN
+Rule 12    assignment -> PUT expression IN identifier
+Rule 13    function -> identifier FOO args
+Rule 14    args -> identifier LOGICAL args
+Rule 15    args -> identifier
+Rule 16    expression -> expression PLUS expression
+Rule 17    expression -> expression MINUS expression
+Rule 18    expression -> expression MULT expression
+Rule 19    expression -> expression DIV expression
+Rule 20    conditional -> expression GT expression
+Rule 21    conditional -> expression LT expression
+Rule 22    conditional -> expression ATTR expression
+Rule 23    conditional -> expression GE expression
+Rule 24    conditional -> expression LE expression
+Rule 25    expression -> identifier
+Rule 26    expression -> literal
+Rule 27    identifier -> PPVAR
+Rule 28    identifier -> cmvar
+Rule 29    identifier -> ID
+Rule 30    identifier -> PRONOUN
+Rule 31    cmvar -> CMVAR ID
+Rule 32    literal -> LITERALNUM
+Rule 33    literal -> LITERALSTR
+Rule 34    literal -> TRUE
+Rule 35    literal -> FALSE
+Rule 36    literal -> NULL
+Rule 37    literal -> poetic
+Rule 38    poetic -> POETIC
+Rule 39    empty -> <empty>
+
+Terminals, with rules where they appear
+
+ATTR                 : 9 22
+BE                   : 
+BREAK                : 
+BUILD                : 10
+CALL                 : 7
+CMVAR                : 31
+COMMA                : 4
+COMMENT              : 
+CONTINUE             : 2
+DIV                  : 19
+DOWN                 : 11
+END                  : 
+FALSE                : 35
+FOO                  : 13
+GE                   : 23
+GT                   : 20
+ID                   : 29 31
+IF                   : 6 7
+IN                   : 12
+KNOCK                : 11
+LE                   : 24
+LET                  : 
+LISTEN               : 
+LITERALNUM           : 32
+LITERALSTR           : 33
+LOGICAL              : 14
+LOOP                 : 4
+LT                   : 21
+MINUS                : 17
+MULT                 : 18
+NULL                 : 36
+PLUS                 : 16
+POETIC               : 38
+PPVAR                : 27
+PRONOUN              : 30
+PUT                  : 12
+SAY                  : 8
+SEND                 : 5
+TRUE                 : 34
+UP                   : 10
+error                : 
+
+Nonterminals, with rules where they appear
+
+args                 : 7 13 14
+assignment           : 1
+cmvar                : 28
+conditional          : 4 6
+empty                : 
+expression           : 5 8 9 12 16 16 17 17 18 18 19 19 20 20 21 21 22 22 23 23 24 24
+function             : 3
+identifier           : 7 9 10 11 12 13 14 15 25
+literal              : 26
+poetic               : 37
+statement            : 0
+
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . assignment
+    (2) statement -> . CONTINUE
+    (3) statement -> . function
+    (4) statement -> . LOOP conditional COMMA
+    (5) statement -> . SEND expression
+    (6) statement -> . IF conditional
+    (7) statement -> . IF identifier CALL args
+    (8) statement -> . SAY expression
+    (9) assignment -> . identifier ATTR expression
+    (10) assignment -> . BUILD identifier UP
+    (11) assignment -> . KNOCK identifier DOWN
+    (12) assignment -> . PUT expression IN identifier
+    (13) function -> . identifier FOO args
+    (27) identifier -> . PPVAR
+    (28) identifier -> . cmvar
+    (29) identifier -> . ID
+    (30) identifier -> . PRONOUN
+    (31) cmvar -> . CMVAR ID
+
+    CONTINUE        shift and go to state 3
+    LOOP            shift and go to state 5
+    SEND            shift and go to state 6
+    IF              shift and go to state 7
+    SAY             shift and go to state 9
+    BUILD           shift and go to state 10
+    KNOCK           shift and go to state 11
+    PUT             shift and go to state 12
+    PPVAR           shift and go to state 13
+    ID              shift and go to state 15
+    PRONOUN         shift and go to state 16
+    CMVAR           shift and go to state 17
+
+    statement                      shift and go to state 1
+    assignment                     shift and go to state 2
+    function                       shift and go to state 4
+    identifier                     shift and go to state 8
+    cmvar                          shift and go to state 14
+
+state 1
+
+    (0) S' -> statement .
+
+
+
+state 2
+
+    (1) statement -> assignment .
+
+    $end            reduce using rule 1 (statement -> assignment .)
+
+
+state 3
+
+    (2) statement -> CONTINUE .
+
+    $end            reduce using rule 2 (statement -> CONTINUE .)
+
+
+state 4
+
+    (3) statement -> function .
+
+    $end            reduce using rule 3 (statement -> function .)
+
+
+state 5
+
+    (4) statement -> LOOP . conditional COMMA
+    (20) conditional -> . expression GT expression
+    (21) conditional -> . expression LT expression
+    (22) conditional -> . expression ATTR expression
+    (23) conditional -> . expression GE expression
+    (24) conditional -> . expression LE expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression MULT expression
+    (19) expression -> . expression DIV expression
+    (25) expression -> . identifier
+    (26) expression -> . literal
+    (27) identifier -> . PPVAR
+    (28) identifier -> . cmvar
+    (29) identifier -> . ID
+    (30) identifier -> . PRONOUN
+    (32) literal -> . LITERALNUM
+    (33) literal -> . LITERALSTR
+    (34) literal -> . TRUE
+    (35) literal -> . FALSE
+    (36) literal -> . NULL
+    (37) literal -> . poetic
+    (31) cmvar -> . CMVAR ID
+    (38) poetic -> . POETIC
+
+    PPVAR           shift and go to state 13
+    ID              shift and go to state 15
+    PRONOUN         shift and go to state 16
+    LITERALNUM      shift and go to state 22
+    LITERALSTR      shift and go to state 23
+    TRUE            shift and go to state 24
+    FALSE           shift and go to state 25
+    NULL            shift and go to state 26
+    CMVAR           shift and go to state 17
+    POETIC          shift and go to state 28
+
+    conditional                    shift and go to state 18
+    expression                     shift and go to state 19
+    identifier                     shift and go to state 20
+    literal                        shift and go to state 21
+    cmvar                          shift and go to state 14
+    poetic                         shift and go to state 27
+
+state 6
+
+    (5) statement -> SEND . expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression MULT expression
+    (19) expression -> . expression DIV expression
+    (25) expression -> . identifier
+    (26) expression -> . literal
+    (27) identifier -> . PPVAR
+    (28) identifier -> . cmvar
+    (29) identifier -> . ID
+    (30) identifier -> . PRONOUN
+    (32) literal -> . LITERALNUM
+    (33) literal -> . LITERALSTR
+    (34) literal -> . TRUE
+    (35) literal -> . FALSE
+    (36) literal -> . NULL
+    (37) literal -> . poetic
+    (31) cmvar -> . CMVAR ID
+    (38) poetic -> . POETIC
+
+    PPVAR           shift and go to state 13
+    ID              shift and go to state 15
+    PRONOUN         shift and go to state 16
+    LITERALNUM      shift and go to state 22
+    LITERALSTR      shift and go to state 23
+    TRUE            shift and go to state 24
+    FALSE           shift and go to state 25
+    NULL            shift and go to state 26
+    CMVAR           shift and go to state 17
+    POETIC          shift and go to state 28
+
+    expression                     shift and go to state 29
+    identifier                     shift and go to state 20
+    literal                        shift and go to state 21
+    cmvar                          shift and go to state 14
+    poetic                         shift and go to state 27
+
+state 7
+
+    (6) statement -> IF . conditional
+    (7) statement -> IF . identifier CALL args
+    (20) conditional -> . expression GT expression
+    (21) conditional -> . expression LT expression
+    (22) conditional -> . expression ATTR expression
+    (23) conditional -> . expression GE expression
+    (24) conditional -> . expression LE expression
+    (27) identifier -> . PPVAR
+    (28) identifier -> . cmvar
+    (29) identifier -> . ID
+    (30) identifier -> . PRONOUN
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression MULT expression
+    (19) expression -> . expression DIV expression
+    (25) expression -> . identifier
+    (26) expression -> . literal
+    (31) cmvar -> . CMVAR ID
+    (32) literal -> . LITERALNUM
+    (33) literal -> . LITERALSTR
+    (34) literal -> . TRUE
+    (35) literal -> . FALSE
+    (36) literal -> . NULL
+    (37) literal -> . poetic
+    (38) poetic -> . POETIC
+
+    PPVAR           shift and go to state 13
+    ID              shift and go to state 15
+    PRONOUN         shift and go to state 16
+    CMVAR           shift and go to state 17
+    LITERALNUM      shift and go to state 22
+    LITERALSTR      shift and go to state 23
+    TRUE            shift and go to state 24
+    FALSE           shift and go to state 25
+    NULL            shift and go to state 26
+    POETIC          shift and go to state 28
+
+    conditional                    shift and go to state 30
+    identifier                     shift and go to state 31
+    expression                     shift and go to state 19
+    cmvar                          shift and go to state 14
+    literal                        shift and go to state 21
+    poetic                         shift and go to state 27
+
+state 8
+
+    (9) assignment -> identifier . ATTR expression
+    (13) function -> identifier . FOO args
+
+    ATTR            shift and go to state 32
+    FOO             shift and go to state 33
+
+
+state 9
+
+    (8) statement -> SAY . expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression MULT expression
+    (19) expression -> . expression DIV expression
+    (25) expression -> . identifier
+    (26) expression -> . literal
+    (27) identifier -> . PPVAR
+    (28) identifier -> . cmvar
+    (29) identifier -> . ID
+    (30) identifier -> . PRONOUN
+    (32) literal -> . LITERALNUM
+    (33) literal -> . LITERALSTR
+    (34) literal -> . TRUE
+    (35) literal -> . FALSE
+    (36) literal -> . NULL
+    (37) literal -> . poetic
+    (31) cmvar -> . CMVAR ID
+    (38) poetic -> . POETIC
+
+    PPVAR           shift and go to state 13
+    ID              shift and go to state 15
+    PRONOUN         shift and go to state 16
+    LITERALNUM      shift and go to state 22
+    LITERALSTR      shift and go to state 23
+    TRUE            shift and go to state 24
+    FALSE           shift and go to state 25
+    NULL            shift and go to state 26
+    CMVAR           shift and go to state 17
+    POETIC          shift and go to state 28
+
+    expression                     shift and go to state 34
+    identifier                     shift and go to state 20
+    literal                        shift and go to state 21
+    cmvar                          shift and go to state 14
+    poetic                         shift and go to state 27
+
+state 10
+
+    (10) assignment -> BUILD . identifier UP
+    (27) identifier -> . PPVAR
+    (28) identifier -> . cmvar
+    (29) identifier -> . ID
+    (30) identifier -> . PRONOUN
+    (31) cmvar -> . CMVAR ID
+
+    PPVAR           shift and go to state 13
+    ID              shift and go to state 15
+    PRONOUN         shift and go to state 16
+    CMVAR           shift and go to state 17
+
+    identifier                     shift and go to state 35
+    cmvar                          shift and go to state 14
+
+state 11
+
+    (11) assignment -> KNOCK . identifier DOWN
+    (27) identifier -> . PPVAR
+    (28) identifier -> . cmvar
+    (29) identifier -> . ID
+    (30) identifier -> . PRONOUN
+    (31) cmvar -> . CMVAR ID
+
+    PPVAR           shift and go to state 13
+    ID              shift and go to state 15
+    PRONOUN         shift and go to state 16
+    CMVAR           shift and go to state 17
+
+    identifier                     shift and go to state 36
+    cmvar                          shift and go to state 14
+
+state 12
+
+    (12) assignment -> PUT . expression IN identifier
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression MULT expression
+    (19) expression -> . expression DIV expression
+    (25) expression -> . identifier
+    (26) expression -> . literal
+    (27) identifier -> . PPVAR
+    (28) identifier -> . cmvar
+    (29) identifier -> . ID
+    (30) identifier -> . PRONOUN
+    (32) literal -> . LITERALNUM
+    (33) literal -> . LITERALSTR
+    (34) literal -> . TRUE
+    (35) literal -> . FALSE
+    (36) literal -> . NULL
+    (37) literal -> . poetic
+    (31) cmvar -> . CMVAR ID
+    (38) poetic -> . POETIC
+
+    PPVAR           shift and go to state 13
+    ID              shift and go to state 15
+    PRONOUN         shift and go to state 16
+    LITERALNUM      shift and go to state 22
+    LITERALSTR      shift and go to state 23
+    TRUE            shift and go to state 24
+    FALSE           shift and go to state 25
+    NULL            shift and go to state 26
+    CMVAR           shift and go to state 17
+    POETIC          shift and go to state 28
+
+    expression                     shift and go to state 37
+    identifier                     shift and go to state 20
+    literal                        shift and go to state 21
+    cmvar                          shift and go to state 14
+    poetic                         shift and go to state 27
+
+state 13
+
+    (27) identifier -> PPVAR .
+
+    ATTR            reduce using rule 27 (identifier -> PPVAR .)
+    FOO             reduce using rule 27 (identifier -> PPVAR .)
+    GT              reduce using rule 27 (identifier -> PPVAR .)
+    LT              reduce using rule 27 (identifier -> PPVAR .)
+    GE              reduce using rule 27 (identifier -> PPVAR .)
+    LE              reduce using rule 27 (identifier -> PPVAR .)
+    PLUS            reduce using rule 27 (identifier -> PPVAR .)
+    MINUS           reduce using rule 27 (identifier -> PPVAR .)
+    MULT            reduce using rule 27 (identifier -> PPVAR .)
+    DIV             reduce using rule 27 (identifier -> PPVAR .)
+    $end            reduce using rule 27 (identifier -> PPVAR .)
+    CALL            reduce using rule 27 (identifier -> PPVAR .)
+    UP              reduce using rule 27 (identifier -> PPVAR .)
+    DOWN            reduce using rule 27 (identifier -> PPVAR .)
+    IN              reduce using rule 27 (identifier -> PPVAR .)
+    LOGICAL         reduce using rule 27 (identifier -> PPVAR .)
+    COMMA           reduce using rule 27 (identifier -> PPVAR .)
+
+
+state 14
+
+    (28) identifier -> cmvar .
+
+    ATTR            reduce using rule 28 (identifier -> cmvar .)
+    FOO             reduce using rule 28 (identifier -> cmvar .)
+    GT              reduce using rule 28 (identifier -> cmvar .)
+    LT              reduce using rule 28 (identifier -> cmvar .)
+    GE              reduce using rule 28 (identifier -> cmvar .)
+    LE              reduce using rule 28 (identifier -> cmvar .)
+    PLUS            reduce using rule 28 (identifier -> cmvar .)
+    MINUS           reduce using rule 28 (identifier -> cmvar .)
+    MULT            reduce using rule 28 (identifier -> cmvar .)
+    DIV             reduce using rule 28 (identifier -> cmvar .)
+    $end            reduce using rule 28 (identifier -> cmvar .)
+    CALL            reduce using rule 28 (identifier -> cmvar .)
+    UP              reduce using rule 28 (identifier -> cmvar .)
+    DOWN            reduce using rule 28 (identifier -> cmvar .)
+    IN              reduce using rule 28 (identifier -> cmvar .)
+    LOGICAL         reduce using rule 28 (identifier -> cmvar .)
+    COMMA           reduce using rule 28 (identifier -> cmvar .)
+
+
+state 15
+
+    (29) identifier -> ID .
+
+    ATTR            reduce using rule 29 (identifier -> ID .)
+    FOO             reduce using rule 29 (identifier -> ID .)
+    GT              reduce using rule 29 (identifier -> ID .)
+    LT              reduce using rule 29 (identifier -> ID .)
+    GE              reduce using rule 29 (identifier -> ID .)
+    LE              reduce using rule 29 (identifier -> ID .)
+    PLUS            reduce using rule 29 (identifier -> ID .)
+    MINUS           reduce using rule 29 (identifier -> ID .)
+    MULT            reduce using rule 29 (identifier -> ID .)
+    DIV             reduce using rule 29 (identifier -> ID .)
+    $end            reduce using rule 29 (identifier -> ID .)
+    CALL            reduce using rule 29 (identifier -> ID .)
+    UP              reduce using rule 29 (identifier -> ID .)
+    DOWN            reduce using rule 29 (identifier -> ID .)
+    IN              reduce using rule 29 (identifier -> ID .)
+    LOGICAL         reduce using rule 29 (identifier -> ID .)
+    COMMA           reduce using rule 29 (identifier -> ID .)
+
+
+state 16
+
+    (30) identifier -> PRONOUN .
+
+    ATTR            reduce using rule 30 (identifier -> PRONOUN .)
+    FOO             reduce using rule 30 (identifier -> PRONOUN .)
+    GT              reduce using rule 30 (identifier -> PRONOUN .)
+    LT              reduce using rule 30 (identifier -> PRONOUN .)
+    GE              reduce using rule 30 (identifier -> PRONOUN .)
+    LE              reduce using rule 30 (identifier -> PRONOUN .)
+    PLUS            reduce using rule 30 (identifier -> PRONOUN .)
+    MINUS           reduce using rule 30 (identifier -> PRONOUN .)
+    MULT            reduce using rule 30 (identifier -> PRONOUN .)
+    DIV             reduce using rule 30 (identifier -> PRONOUN .)
+    $end            reduce using rule 30 (identifier -> PRONOUN .)
+    CALL            reduce using rule 30 (identifier -> PRONOUN .)
+    UP              reduce using rule 30 (identifier -> PRONOUN .)
+    DOWN            reduce using rule 30 (identifier -> PRONOUN .)
+    IN              reduce using rule 30 (identifier -> PRONOUN .)
+    LOGICAL         reduce using rule 30 (identifier -> PRONOUN .)
+    COMMA           reduce using rule 30 (identifier -> PRONOUN .)
+
+
+state 17
+
+    (31) cmvar -> CMVAR . ID
+
+    ID              shift and go to state 38
+
+
+state 18
+
+    (4) statement -> LOOP conditional . COMMA
+
+    COMMA           shift and go to state 39
+
+
+state 19
+
+    (20) conditional -> expression . GT expression
+    (21) conditional -> expression . LT expression
+    (22) conditional -> expression . ATTR expression
+    (23) conditional -> expression . GE expression
+    (24) conditional -> expression . LE expression
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . MULT expression
+    (19) expression -> expression . DIV expression
+
+    GT              shift and go to state 40
+    LT              shift and go to state 41
+    ATTR            shift and go to state 42
+    GE              shift and go to state 43
+    LE              shift and go to state 44
+    PLUS            shift and go to state 45
+    MINUS           shift and go to state 46
+    MULT            shift and go to state 47
+    DIV             shift and go to state 48
+
+
+state 20
+
+    (25) expression -> identifier .
+
+    GT              reduce using rule 25 (expression -> identifier .)
+    LT              reduce using rule 25 (expression -> identifier .)
+    ATTR            reduce using rule 25 (expression -> identifier .)
+    GE              reduce using rule 25 (expression -> identifier .)
+    LE              reduce using rule 25 (expression -> identifier .)
+    PLUS            reduce using rule 25 (expression -> identifier .)
+    MINUS           reduce using rule 25 (expression -> identifier .)
+    MULT            reduce using rule 25 (expression -> identifier .)
+    DIV             reduce using rule 25 (expression -> identifier .)
+    $end            reduce using rule 25 (expression -> identifier .)
+    IN              reduce using rule 25 (expression -> identifier .)
+    COMMA           reduce using rule 25 (expression -> identifier .)
+
+
+state 21
+
+    (26) expression -> literal .
+
+    GT              reduce using rule 26 (expression -> literal .)
+    LT              reduce using rule 26 (expression -> literal .)
+    ATTR            reduce using rule 26 (expression -> literal .)
+    GE              reduce using rule 26 (expression -> literal .)
+    LE              reduce using rule 26 (expression -> literal .)
+    PLUS            reduce using rule 26 (expression -> literal .)
+    MINUS           reduce using rule 26 (expression -> literal .)
+    MULT            reduce using rule 26 (expression -> literal .)
+    DIV             reduce using rule 26 (expression -> literal .)
+    $end            reduce using rule 26 (expression -> literal .)
+    IN              reduce using rule 26 (expression -> literal .)
+    COMMA           reduce using rule 26 (expression -> literal .)
+
+
+state 22
+
+    (32) literal -> LITERALNUM .
+
+    GT              reduce using rule 32 (literal -> LITERALNUM .)
+    LT              reduce using rule 32 (literal -> LITERALNUM .)
+    ATTR            reduce using rule 32 (literal -> LITERALNUM .)
+    GE              reduce using rule 32 (literal -> LITERALNUM .)
+    LE              reduce using rule 32 (literal -> LITERALNUM .)
+    PLUS            reduce using rule 32 (literal -> LITERALNUM .)
+    MINUS           reduce using rule 32 (literal -> LITERALNUM .)
+    MULT            reduce using rule 32 (literal -> LITERALNUM .)
+    DIV             reduce using rule 32 (literal -> LITERALNUM .)
+    $end            reduce using rule 32 (literal -> LITERALNUM .)
+    IN              reduce using rule 32 (literal -> LITERALNUM .)
+    COMMA           reduce using rule 32 (literal -> LITERALNUM .)
+
+
+state 23
+
+    (33) literal -> LITERALSTR .
+
+    GT              reduce using rule 33 (literal -> LITERALSTR .)
+    LT              reduce using rule 33 (literal -> LITERALSTR .)
+    ATTR            reduce using rule 33 (literal -> LITERALSTR .)
+    GE              reduce using rule 33 (literal -> LITERALSTR .)
+    LE              reduce using rule 33 (literal -> LITERALSTR .)
+    PLUS            reduce using rule 33 (literal -> LITERALSTR .)
+    MINUS           reduce using rule 33 (literal -> LITERALSTR .)
+    MULT            reduce using rule 33 (literal -> LITERALSTR .)
+    DIV             reduce using rule 33 (literal -> LITERALSTR .)
+    $end            reduce using rule 33 (literal -> LITERALSTR .)
+    IN              reduce using rule 33 (literal -> LITERALSTR .)
+    COMMA           reduce using rule 33 (literal -> LITERALSTR .)
+
+
+state 24
+
+    (34) literal -> TRUE .
+
+    GT              reduce using rule 34 (literal -> TRUE .)
+    LT              reduce using rule 34 (literal -> TRUE .)
+    ATTR            reduce using rule 34 (literal -> TRUE .)
+    GE              reduce using rule 34 (literal -> TRUE .)
+    LE              reduce using rule 34 (literal -> TRUE .)
+    PLUS            reduce using rule 34 (literal -> TRUE .)
+    MINUS           reduce using rule 34 (literal -> TRUE .)
+    MULT            reduce using rule 34 (literal -> TRUE .)
+    DIV             reduce using rule 34 (literal -> TRUE .)
+    $end            reduce using rule 34 (literal -> TRUE .)
+    IN              reduce using rule 34 (literal -> TRUE .)
+    COMMA           reduce using rule 34 (literal -> TRUE .)
+
+
+state 25
+
+    (35) literal -> FALSE .
+
+    GT              reduce using rule 35 (literal -> FALSE .)
+    LT              reduce using rule 35 (literal -> FALSE .)
+    ATTR            reduce using rule 35 (literal -> FALSE .)
+    GE              reduce using rule 35 (literal -> FALSE .)
+    LE              reduce using rule 35 (literal -> FALSE .)
+    PLUS            reduce using rule 35 (literal -> FALSE .)
+    MINUS           reduce using rule 35 (literal -> FALSE .)
+    MULT            reduce using rule 35 (literal -> FALSE .)
+    DIV             reduce using rule 35 (literal -> FALSE .)
+    $end            reduce using rule 35 (literal -> FALSE .)
+    IN              reduce using rule 35 (literal -> FALSE .)
+    COMMA           reduce using rule 35 (literal -> FALSE .)
+
+
+state 26
+
+    (36) literal -> NULL .
+
+    GT              reduce using rule 36 (literal -> NULL .)
+    LT              reduce using rule 36 (literal -> NULL .)
+    ATTR            reduce using rule 36 (literal -> NULL .)
+    GE              reduce using rule 36 (literal -> NULL .)
+    LE              reduce using rule 36 (literal -> NULL .)
+    PLUS            reduce using rule 36 (literal -> NULL .)
+    MINUS           reduce using rule 36 (literal -> NULL .)
+    MULT            reduce using rule 36 (literal -> NULL .)
+    DIV             reduce using rule 36 (literal -> NULL .)
+    $end            reduce using rule 36 (literal -> NULL .)
+    IN              reduce using rule 36 (literal -> NULL .)
+    COMMA           reduce using rule 36 (literal -> NULL .)
+
+
+state 27
+
+    (37) literal -> poetic .
+
+    GT              reduce using rule 37 (literal -> poetic .)
+    LT              reduce using rule 37 (literal -> poetic .)
+    ATTR            reduce using rule 37 (literal -> poetic .)
+    GE              reduce using rule 37 (literal -> poetic .)
+    LE              reduce using rule 37 (literal -> poetic .)
+    PLUS            reduce using rule 37 (literal -> poetic .)
+    MINUS           reduce using rule 37 (literal -> poetic .)
+    MULT            reduce using rule 37 (literal -> poetic .)
+    DIV             reduce using rule 37 (literal -> poetic .)
+    $end            reduce using rule 37 (literal -> poetic .)
+    IN              reduce using rule 37 (literal -> poetic .)
+    COMMA           reduce using rule 37 (literal -> poetic .)
+
+
+state 28
+
+    (38) poetic -> POETIC .
+
+    GT              reduce using rule 38 (poetic -> POETIC .)
+    LT              reduce using rule 38 (poetic -> POETIC .)
+    ATTR            reduce using rule 38 (poetic -> POETIC .)
+    GE              reduce using rule 38 (poetic -> POETIC .)
+    LE              reduce using rule 38 (poetic -> POETIC .)
+    PLUS            reduce using rule 38 (poetic -> POETIC .)
+    MINUS           reduce using rule 38 (poetic -> POETIC .)
+    MULT            reduce using rule 38 (poetic -> POETIC .)
+    DIV             reduce using rule 38 (poetic -> POETIC .)
+    $end            reduce using rule 38 (poetic -> POETIC .)
+    IN              reduce using rule 38 (poetic -> POETIC .)
+    COMMA           reduce using rule 38 (poetic -> POETIC .)
+
+
+state 29
+
+    (5) statement -> SEND expression .
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . MULT expression
+    (19) expression -> expression . DIV expression
+
+    $end            reduce using rule 5 (statement -> SEND expression .)
+    PLUS            shift and go to state 45
+    MINUS           shift and go to state 46
+    MULT            shift and go to state 47
+    DIV             shift and go to state 48
+
+
+state 30
+
+    (6) statement -> IF conditional .
+
+    $end            reduce using rule 6 (statement -> IF conditional .)
+
+
+state 31
+
+    (7) statement -> IF identifier . CALL args
+    (25) expression -> identifier .
+
+    CALL            shift and go to state 49
+    GT              reduce using rule 25 (expression -> identifier .)
+    LT              reduce using rule 25 (expression -> identifier .)
+    ATTR            reduce using rule 25 (expression -> identifier .)
+    GE              reduce using rule 25 (expression -> identifier .)
+    LE              reduce using rule 25 (expression -> identifier .)
+    PLUS            reduce using rule 25 (expression -> identifier .)
+    MINUS           reduce using rule 25 (expression -> identifier .)
+    MULT            reduce using rule 25 (expression -> identifier .)
+    DIV             reduce using rule 25 (expression -> identifier .)
+
+
+state 32
+
+    (9) assignment -> identifier ATTR . expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression MULT expression
+    (19) expression -> . expression DIV expression
+    (25) expression -> . identifier
+    (26) expression -> . literal
+    (27) identifier -> . PPVAR
+    (28) identifier -> . cmvar
+    (29) identifier -> . ID
+    (30) identifier -> . PRONOUN
+    (32) literal -> . LITERALNUM
+    (33) literal -> . LITERALSTR
+    (34) literal -> . TRUE
+    (35) literal -> . FALSE
+    (36) literal -> . NULL
+    (37) literal -> . poetic
+    (31) cmvar -> . CMVAR ID
+    (38) poetic -> . POETIC
+
+    PPVAR           shift and go to state 13
+    ID              shift and go to state 15
+    PRONOUN         shift and go to state 16
+    LITERALNUM      shift and go to state 22
+    LITERALSTR      shift and go to state 23
+    TRUE            shift and go to state 24
+    FALSE           shift and go to state 25
+    NULL            shift and go to state 26
+    CMVAR           shift and go to state 17
+    POETIC          shift and go to state 28
+
+    identifier                     shift and go to state 20
+    expression                     shift and go to state 50
+    literal                        shift and go to state 21
+    cmvar                          shift and go to state 14
+    poetic                         shift and go to state 27
+
+state 33
+
+    (13) function -> identifier FOO . args
+    (14) args -> . identifier LOGICAL args
+    (15) args -> . identifier
+    (27) identifier -> . PPVAR
+    (28) identifier -> . cmvar
+    (29) identifier -> . ID
+    (30) identifier -> . PRONOUN
+    (31) cmvar -> . CMVAR ID
+
+    PPVAR           shift and go to state 13
+    ID              shift and go to state 15
+    PRONOUN         shift and go to state 16
+    CMVAR           shift and go to state 17
+
+    identifier                     shift and go to state 51
+    args                           shift and go to state 52
+    cmvar                          shift and go to state 14
+
+state 34
+
+    (8) statement -> SAY expression .
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . MULT expression
+    (19) expression -> expression . DIV expression
+
+    $end            reduce using rule 8 (statement -> SAY expression .)
+    PLUS            shift and go to state 45
+    MINUS           shift and go to state 46
+    MULT            shift and go to state 47
+    DIV             shift and go to state 48
+
+
+state 35
+
+    (10) assignment -> BUILD identifier . UP
+
+    UP              shift and go to state 53
+
+
+state 36
+
+    (11) assignment -> KNOCK identifier . DOWN
+
+    DOWN            shift and go to state 54
+
+
+state 37
+
+    (12) assignment -> PUT expression . IN identifier
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . MULT expression
+    (19) expression -> expression . DIV expression
+
+    IN              shift and go to state 55
+    PLUS            shift and go to state 45
+    MINUS           shift and go to state 46
+    MULT            shift and go to state 47
+    DIV             shift and go to state 48
+
+
+state 38
+
+    (31) cmvar -> CMVAR ID .
+
+    ATTR            reduce using rule 31 (cmvar -> CMVAR ID .)
+    FOO             reduce using rule 31 (cmvar -> CMVAR ID .)
+    GT              reduce using rule 31 (cmvar -> CMVAR ID .)
+    LT              reduce using rule 31 (cmvar -> CMVAR ID .)
+    GE              reduce using rule 31 (cmvar -> CMVAR ID .)
+    LE              reduce using rule 31 (cmvar -> CMVAR ID .)
+    PLUS            reduce using rule 31 (cmvar -> CMVAR ID .)
+    MINUS           reduce using rule 31 (cmvar -> CMVAR ID .)
+    MULT            reduce using rule 31 (cmvar -> CMVAR ID .)
+    DIV             reduce using rule 31 (cmvar -> CMVAR ID .)
+    $end            reduce using rule 31 (cmvar -> CMVAR ID .)
+    CALL            reduce using rule 31 (cmvar -> CMVAR ID .)
+    UP              reduce using rule 31 (cmvar -> CMVAR ID .)
+    DOWN            reduce using rule 31 (cmvar -> CMVAR ID .)
+    IN              reduce using rule 31 (cmvar -> CMVAR ID .)
+    LOGICAL         reduce using rule 31 (cmvar -> CMVAR ID .)
+    COMMA           reduce using rule 31 (cmvar -> CMVAR ID .)
+
+
+state 39
+
+    (4) statement -> LOOP conditional COMMA .
+
+    $end            reduce using rule 4 (statement -> LOOP conditional COMMA .)
+
+
+state 40
+
+    (20) conditional -> expression GT . expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression MULT expression
+    (19) expression -> . expression DIV expression
+    (25) expression -> . identifier
+    (26) expression -> . literal
+    (27) identifier -> . PPVAR
+    (28) identifier -> . cmvar
+    (29) identifier -> . ID
+    (30) identifier -> . PRONOUN
+    (32) literal -> . LITERALNUM
+    (33) literal -> . LITERALSTR
+    (34) literal -> . TRUE
+    (35) literal -> . FALSE
+    (36) literal -> . NULL
+    (37) literal -> . poetic
+    (31) cmvar -> . CMVAR ID
+    (38) poetic -> . POETIC
+
+    PPVAR           shift and go to state 13
+    ID              shift and go to state 15
+    PRONOUN         shift and go to state 16
+    LITERALNUM      shift and go to state 22
+    LITERALSTR      shift and go to state 23
+    TRUE            shift and go to state 24
+    FALSE           shift and go to state 25
+    NULL            shift and go to state 26
+    CMVAR           shift and go to state 17
+    POETIC          shift and go to state 28
+
+    expression                     shift and go to state 56
+    identifier                     shift and go to state 20
+    literal                        shift and go to state 21
+    cmvar                          shift and go to state 14
+    poetic                         shift and go to state 27
+
+state 41
+
+    (21) conditional -> expression LT . expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression MULT expression
+    (19) expression -> . expression DIV expression
+    (25) expression -> . identifier
+    (26) expression -> . literal
+    (27) identifier -> . PPVAR
+    (28) identifier -> . cmvar
+    (29) identifier -> . ID
+    (30) identifier -> . PRONOUN
+    (32) literal -> . LITERALNUM
+    (33) literal -> . LITERALSTR
+    (34) literal -> . TRUE
+    (35) literal -> . FALSE
+    (36) literal -> . NULL
+    (37) literal -> . poetic
+    (31) cmvar -> . CMVAR ID
+    (38) poetic -> . POETIC
+
+    PPVAR           shift and go to state 13
+    ID              shift and go to state 15
+    PRONOUN         shift and go to state 16
+    LITERALNUM      shift and go to state 22
+    LITERALSTR      shift and go to state 23
+    TRUE            shift and go to state 24
+    FALSE           shift and go to state 25
+    NULL            shift and go to state 26
+    CMVAR           shift and go to state 17
+    POETIC          shift and go to state 28
+
+    expression                     shift and go to state 57
+    identifier                     shift and go to state 20
+    literal                        shift and go to state 21
+    cmvar                          shift and go to state 14
+    poetic                         shift and go to state 27
+
+state 42
+
+    (22) conditional -> expression ATTR . expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression MULT expression
+    (19) expression -> . expression DIV expression
+    (25) expression -> . identifier
+    (26) expression -> . literal
+    (27) identifier -> . PPVAR
+    (28) identifier -> . cmvar
+    (29) identifier -> . ID
+    (30) identifier -> . PRONOUN
+    (32) literal -> . LITERALNUM
+    (33) literal -> . LITERALSTR
+    (34) literal -> . TRUE
+    (35) literal -> . FALSE
+    (36) literal -> . NULL
+    (37) literal -> . poetic
+    (31) cmvar -> . CMVAR ID
+    (38) poetic -> . POETIC
+
+    PPVAR           shift and go to state 13
+    ID              shift and go to state 15
+    PRONOUN         shift and go to state 16
+    LITERALNUM      shift and go to state 22
+    LITERALSTR      shift and go to state 23
+    TRUE            shift and go to state 24
+    FALSE           shift and go to state 25
+    NULL            shift and go to state 26
+    CMVAR           shift and go to state 17
+    POETIC          shift and go to state 28
+
+    expression                     shift and go to state 58
+    identifier                     shift and go to state 20
+    literal                        shift and go to state 21
+    cmvar                          shift and go to state 14
+    poetic                         shift and go to state 27
+
+state 43
+
+    (23) conditional -> expression GE . expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression MULT expression
+    (19) expression -> . expression DIV expression
+    (25) expression -> . identifier
+    (26) expression -> . literal
+    (27) identifier -> . PPVAR
+    (28) identifier -> . cmvar
+    (29) identifier -> . ID
+    (30) identifier -> . PRONOUN
+    (32) literal -> . LITERALNUM
+    (33) literal -> . LITERALSTR
+    (34) literal -> . TRUE
+    (35) literal -> . FALSE
+    (36) literal -> . NULL
+    (37) literal -> . poetic
+    (31) cmvar -> . CMVAR ID
+    (38) poetic -> . POETIC
+
+    PPVAR           shift and go to state 13
+    ID              shift and go to state 15
+    PRONOUN         shift and go to state 16
+    LITERALNUM      shift and go to state 22
+    LITERALSTR      shift and go to state 23
+    TRUE            shift and go to state 24
+    FALSE           shift and go to state 25
+    NULL            shift and go to state 26
+    CMVAR           shift and go to state 17
+    POETIC          shift and go to state 28
+
+    expression                     shift and go to state 59
+    identifier                     shift and go to state 20
+    literal                        shift and go to state 21
+    cmvar                          shift and go to state 14
+    poetic                         shift and go to state 27
+
+state 44
+
+    (24) conditional -> expression LE . expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression MULT expression
+    (19) expression -> . expression DIV expression
+    (25) expression -> . identifier
+    (26) expression -> . literal
+    (27) identifier -> . PPVAR
+    (28) identifier -> . cmvar
+    (29) identifier -> . ID
+    (30) identifier -> . PRONOUN
+    (32) literal -> . LITERALNUM
+    (33) literal -> . LITERALSTR
+    (34) literal -> . TRUE
+    (35) literal -> . FALSE
+    (36) literal -> . NULL
+    (37) literal -> . poetic
+    (31) cmvar -> . CMVAR ID
+    (38) poetic -> . POETIC
+
+    PPVAR           shift and go to state 13
+    ID              shift and go to state 15
+    PRONOUN         shift and go to state 16
+    LITERALNUM      shift and go to state 22
+    LITERALSTR      shift and go to state 23
+    TRUE            shift and go to state 24
+    FALSE           shift and go to state 25
+    NULL            shift and go to state 26
+    CMVAR           shift and go to state 17
+    POETIC          shift and go to state 28
+
+    expression                     shift and go to state 60
+    identifier                     shift and go to state 20
+    literal                        shift and go to state 21
+    cmvar                          shift and go to state 14
+    poetic                         shift and go to state 27
+
+state 45
+
+    (16) expression -> expression PLUS . expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression MULT expression
+    (19) expression -> . expression DIV expression
+    (25) expression -> . identifier
+    (26) expression -> . literal
+    (27) identifier -> . PPVAR
+    (28) identifier -> . cmvar
+    (29) identifier -> . ID
+    (30) identifier -> . PRONOUN
+    (32) literal -> . LITERALNUM
+    (33) literal -> . LITERALSTR
+    (34) literal -> . TRUE
+    (35) literal -> . FALSE
+    (36) literal -> . NULL
+    (37) literal -> . poetic
+    (31) cmvar -> . CMVAR ID
+    (38) poetic -> . POETIC
+
+    PPVAR           shift and go to state 13
+    ID              shift and go to state 15
+    PRONOUN         shift and go to state 16
+    LITERALNUM      shift and go to state 22
+    LITERALSTR      shift and go to state 23
+    TRUE            shift and go to state 24
+    FALSE           shift and go to state 25
+    NULL            shift and go to state 26
+    CMVAR           shift and go to state 17
+    POETIC          shift and go to state 28
+
+    expression                     shift and go to state 61
+    identifier                     shift and go to state 20
+    literal                        shift and go to state 21
+    cmvar                          shift and go to state 14
+    poetic                         shift and go to state 27
+
+state 46
+
+    (17) expression -> expression MINUS . expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression MULT expression
+    (19) expression -> . expression DIV expression
+    (25) expression -> . identifier
+    (26) expression -> . literal
+    (27) identifier -> . PPVAR
+    (28) identifier -> . cmvar
+    (29) identifier -> . ID
+    (30) identifier -> . PRONOUN
+    (32) literal -> . LITERALNUM
+    (33) literal -> . LITERALSTR
+    (34) literal -> . TRUE
+    (35) literal -> . FALSE
+    (36) literal -> . NULL
+    (37) literal -> . poetic
+    (31) cmvar -> . CMVAR ID
+    (38) poetic -> . POETIC
+
+    PPVAR           shift and go to state 13
+    ID              shift and go to state 15
+    PRONOUN         shift and go to state 16
+    LITERALNUM      shift and go to state 22
+    LITERALSTR      shift and go to state 23
+    TRUE            shift and go to state 24
+    FALSE           shift and go to state 25
+    NULL            shift and go to state 26
+    CMVAR           shift and go to state 17
+    POETIC          shift and go to state 28
+
+    expression                     shift and go to state 62
+    identifier                     shift and go to state 20
+    literal                        shift and go to state 21
+    cmvar                          shift and go to state 14
+    poetic                         shift and go to state 27
+
+state 47
+
+    (18) expression -> expression MULT . expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression MULT expression
+    (19) expression -> . expression DIV expression
+    (25) expression -> . identifier
+    (26) expression -> . literal
+    (27) identifier -> . PPVAR
+    (28) identifier -> . cmvar
+    (29) identifier -> . ID
+    (30) identifier -> . PRONOUN
+    (32) literal -> . LITERALNUM
+    (33) literal -> . LITERALSTR
+    (34) literal -> . TRUE
+    (35) literal -> . FALSE
+    (36) literal -> . NULL
+    (37) literal -> . poetic
+    (31) cmvar -> . CMVAR ID
+    (38) poetic -> . POETIC
+
+    PPVAR           shift and go to state 13
+    ID              shift and go to state 15
+    PRONOUN         shift and go to state 16
+    LITERALNUM      shift and go to state 22
+    LITERALSTR      shift and go to state 23
+    TRUE            shift and go to state 24
+    FALSE           shift and go to state 25
+    NULL            shift and go to state 26
+    CMVAR           shift and go to state 17
+    POETIC          shift and go to state 28
+
+    expression                     shift and go to state 63
+    identifier                     shift and go to state 20
+    literal                        shift and go to state 21
+    cmvar                          shift and go to state 14
+    poetic                         shift and go to state 27
+
+state 48
+
+    (19) expression -> expression DIV . expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression MULT expression
+    (19) expression -> . expression DIV expression
+    (25) expression -> . identifier
+    (26) expression -> . literal
+    (27) identifier -> . PPVAR
+    (28) identifier -> . cmvar
+    (29) identifier -> . ID
+    (30) identifier -> . PRONOUN
+    (32) literal -> . LITERALNUM
+    (33) literal -> . LITERALSTR
+    (34) literal -> . TRUE
+    (35) literal -> . FALSE
+    (36) literal -> . NULL
+    (37) literal -> . poetic
+    (31) cmvar -> . CMVAR ID
+    (38) poetic -> . POETIC
+
+    PPVAR           shift and go to state 13
+    ID              shift and go to state 15
+    PRONOUN         shift and go to state 16
+    LITERALNUM      shift and go to state 22
+    LITERALSTR      shift and go to state 23
+    TRUE            shift and go to state 24
+    FALSE           shift and go to state 25
+    NULL            shift and go to state 26
+    CMVAR           shift and go to state 17
+    POETIC          shift and go to state 28
+
+    expression                     shift and go to state 64
+    identifier                     shift and go to state 20
+    literal                        shift and go to state 21
+    cmvar                          shift and go to state 14
+    poetic                         shift and go to state 27
+
+state 49
+
+    (7) statement -> IF identifier CALL . args
+    (14) args -> . identifier LOGICAL args
+    (15) args -> . identifier
+    (27) identifier -> . PPVAR
+    (28) identifier -> . cmvar
+    (29) identifier -> . ID
+    (30) identifier -> . PRONOUN
+    (31) cmvar -> . CMVAR ID
+
+    PPVAR           shift and go to state 13
+    ID              shift and go to state 15
+    PRONOUN         shift and go to state 16
+    CMVAR           shift and go to state 17
+
+    identifier                     shift and go to state 51
+    args                           shift and go to state 65
+    cmvar                          shift and go to state 14
+
+state 50
+
+    (9) assignment -> identifier ATTR expression .
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . MULT expression
+    (19) expression -> expression . DIV expression
+
+    $end            reduce using rule 9 (assignment -> identifier ATTR expression .)
+    PLUS            shift and go to state 45
+    MINUS           shift and go to state 46
+    MULT            shift and go to state 47
+    DIV             shift and go to state 48
+
+
+state 51
+
+    (14) args -> identifier . LOGICAL args
+    (15) args -> identifier .
+
+    LOGICAL         shift and go to state 66
+    $end            reduce using rule 15 (args -> identifier .)
+
+
+state 52
+
+    (13) function -> identifier FOO args .
+
+    $end            reduce using rule 13 (function -> identifier FOO args .)
+
+
+state 53
+
+    (10) assignment -> BUILD identifier UP .
+
+    $end            reduce using rule 10 (assignment -> BUILD identifier UP .)
+
+
+state 54
+
+    (11) assignment -> KNOCK identifier DOWN .
+
+    $end            reduce using rule 11 (assignment -> KNOCK identifier DOWN .)
+
+
+state 55
+
+    (12) assignment -> PUT expression IN . identifier
+    (27) identifier -> . PPVAR
+    (28) identifier -> . cmvar
+    (29) identifier -> . ID
+    (30) identifier -> . PRONOUN
+    (31) cmvar -> . CMVAR ID
+
+    PPVAR           shift and go to state 13
+    ID              shift and go to state 15
+    PRONOUN         shift and go to state 16
+    CMVAR           shift and go to state 17
+
+    identifier                     shift and go to state 67
+    cmvar                          shift and go to state 14
+
+state 56
+
+    (20) conditional -> expression GT expression .
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . MULT expression
+    (19) expression -> expression . DIV expression
+
+    COMMA           reduce using rule 20 (conditional -> expression GT expression .)
+    $end            reduce using rule 20 (conditional -> expression GT expression .)
+    PLUS            shift and go to state 45
+    MINUS           shift and go to state 46
+    MULT            shift and go to state 47
+    DIV             shift and go to state 48
+
+
+state 57
+
+    (21) conditional -> expression LT expression .
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . MULT expression
+    (19) expression -> expression . DIV expression
+
+    COMMA           reduce using rule 21 (conditional -> expression LT expression .)
+    $end            reduce using rule 21 (conditional -> expression LT expression .)
+    PLUS            shift and go to state 45
+    MINUS           shift and go to state 46
+    MULT            shift and go to state 47
+    DIV             shift and go to state 48
+
+
+state 58
+
+    (22) conditional -> expression ATTR expression .
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . MULT expression
+    (19) expression -> expression . DIV expression
+
+    COMMA           reduce using rule 22 (conditional -> expression ATTR expression .)
+    $end            reduce using rule 22 (conditional -> expression ATTR expression .)
+    PLUS            shift and go to state 45
+    MINUS           shift and go to state 46
+    MULT            shift and go to state 47
+    DIV             shift and go to state 48
+
+
+state 59
+
+    (23) conditional -> expression GE expression .
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . MULT expression
+    (19) expression -> expression . DIV expression
+
+    COMMA           reduce using rule 23 (conditional -> expression GE expression .)
+    $end            reduce using rule 23 (conditional -> expression GE expression .)
+    PLUS            shift and go to state 45
+    MINUS           shift and go to state 46
+    MULT            shift and go to state 47
+    DIV             shift and go to state 48
+
+
+state 60
+
+    (24) conditional -> expression LE expression .
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . MULT expression
+    (19) expression -> expression . DIV expression
+
+    COMMA           reduce using rule 24 (conditional -> expression LE expression .)
+    $end            reduce using rule 24 (conditional -> expression LE expression .)
+    PLUS            shift and go to state 45
+    MINUS           shift and go to state 46
+    MULT            shift and go to state 47
+    DIV             shift and go to state 48
+
+
+state 61
+
+    (16) expression -> expression PLUS expression .
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . MULT expression
+    (19) expression -> expression . DIV expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+    GT              reduce using rule 16 (expression -> expression PLUS expression .)
+    LT              reduce using rule 16 (expression -> expression PLUS expression .)
+    ATTR            reduce using rule 16 (expression -> expression PLUS expression .)
+    GE              reduce using rule 16 (expression -> expression PLUS expression .)
+    LE              reduce using rule 16 (expression -> expression PLUS expression .)
+    $end            reduce using rule 16 (expression -> expression PLUS expression .)
+    IN              reduce using rule 16 (expression -> expression PLUS expression .)
+    COMMA           reduce using rule 16 (expression -> expression PLUS expression .)
+    PLUS            shift and go to state 45
+    MINUS           shift and go to state 46
+    MULT            shift and go to state 47
+    DIV             shift and go to state 48
+
+  ! PLUS            [ reduce using rule 16 (expression -> expression PLUS expression .) ]
+  ! MINUS           [ reduce using rule 16 (expression -> expression PLUS expression .) ]
+  ! MULT            [ reduce using rule 16 (expression -> expression PLUS expression .) ]
+  ! DIV             [ reduce using rule 16 (expression -> expression PLUS expression .) ]
+
+
+state 62
+
+    (17) expression -> expression MINUS expression .
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . MULT expression
+    (19) expression -> expression . DIV expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+    GT              reduce using rule 17 (expression -> expression MINUS expression .)
+    LT              reduce using rule 17 (expression -> expression MINUS expression .)
+    ATTR            reduce using rule 17 (expression -> expression MINUS expression .)
+    GE              reduce using rule 17 (expression -> expression MINUS expression .)
+    LE              reduce using rule 17 (expression -> expression MINUS expression .)
+    $end            reduce using rule 17 (expression -> expression MINUS expression .)
+    IN              reduce using rule 17 (expression -> expression MINUS expression .)
+    COMMA           reduce using rule 17 (expression -> expression MINUS expression .)
+    PLUS            shift and go to state 45
+    MINUS           shift and go to state 46
+    MULT            shift and go to state 47
+    DIV             shift and go to state 48
+
+  ! PLUS            [ reduce using rule 17 (expression -> expression MINUS expression .) ]
+  ! MINUS           [ reduce using rule 17 (expression -> expression MINUS expression .) ]
+  ! MULT            [ reduce using rule 17 (expression -> expression MINUS expression .) ]
+  ! DIV             [ reduce using rule 17 (expression -> expression MINUS expression .) ]
+
+
+state 63
+
+    (18) expression -> expression MULT expression .
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . MULT expression
+    (19) expression -> expression . DIV expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+    GT              reduce using rule 18 (expression -> expression MULT expression .)
+    LT              reduce using rule 18 (expression -> expression MULT expression .)
+    ATTR            reduce using rule 18 (expression -> expression MULT expression .)
+    GE              reduce using rule 18 (expression -> expression MULT expression .)
+    LE              reduce using rule 18 (expression -> expression MULT expression .)
+    $end            reduce using rule 18 (expression -> expression MULT expression .)
+    IN              reduce using rule 18 (expression -> expression MULT expression .)
+    COMMA           reduce using rule 18 (expression -> expression MULT expression .)
+    PLUS            shift and go to state 45
+    MINUS           shift and go to state 46
+    MULT            shift and go to state 47
+    DIV             shift and go to state 48
+
+  ! PLUS            [ reduce using rule 18 (expression -> expression MULT expression .) ]
+  ! MINUS           [ reduce using rule 18 (expression -> expression MULT expression .) ]
+  ! MULT            [ reduce using rule 18 (expression -> expression MULT expression .) ]
+  ! DIV             [ reduce using rule 18 (expression -> expression MULT expression .) ]
+
+
+state 64
+
+    (19) expression -> expression DIV expression .
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . MULT expression
+    (19) expression -> expression . DIV expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+    GT              reduce using rule 19 (expression -> expression DIV expression .)
+    LT              reduce using rule 19 (expression -> expression DIV expression .)
+    ATTR            reduce using rule 19 (expression -> expression DIV expression .)
+    GE              reduce using rule 19 (expression -> expression DIV expression .)
+    LE              reduce using rule 19 (expression -> expression DIV expression .)
+    $end            reduce using rule 19 (expression -> expression DIV expression .)
+    IN              reduce using rule 19 (expression -> expression DIV expression .)
+    COMMA           reduce using rule 19 (expression -> expression DIV expression .)
+    PLUS            shift and go to state 45
+    MINUS           shift and go to state 46
+    MULT            shift and go to state 47
+    DIV             shift and go to state 48
+
+  ! PLUS            [ reduce using rule 19 (expression -> expression DIV expression .) ]
+  ! MINUS           [ reduce using rule 19 (expression -> expression DIV expression .) ]
+  ! MULT            [ reduce using rule 19 (expression -> expression DIV expression .) ]
+  ! DIV             [ reduce using rule 19 (expression -> expression DIV expression .) ]
+
+
+state 65
+
+    (7) statement -> IF identifier CALL args .
+
+    $end            reduce using rule 7 (statement -> IF identifier CALL args .)
+
+
+state 66
+
+    (14) args -> identifier LOGICAL . args
+    (14) args -> . identifier LOGICAL args
+    (15) args -> . identifier
+    (27) identifier -> . PPVAR
+    (28) identifier -> . cmvar
+    (29) identifier -> . ID
+    (30) identifier -> . PRONOUN
+    (31) cmvar -> . CMVAR ID
+
+    PPVAR           shift and go to state 13
+    ID              shift and go to state 15
+    PRONOUN         shift and go to state 16
+    CMVAR           shift and go to state 17
+
+    identifier                     shift and go to state 51
+    args                           shift and go to state 68
+    cmvar                          shift and go to state 14
+
+state 67
+
+    (12) assignment -> PUT expression IN identifier .
+
+    $end            reduce using rule 12 (assignment -> PUT expression IN identifier .)
+
+
+state 68
+
+    (14) args -> identifier LOGICAL args .
+
+    $end            reduce using rule 14 (args -> identifier LOGICAL args .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for PLUS in state 61 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 61 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 61 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 61 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 62 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 62 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 62 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 62 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 63 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 63 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 63 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 63 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 64 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 64 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 64 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 64 resolved as shift
